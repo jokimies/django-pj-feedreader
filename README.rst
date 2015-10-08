@@ -8,6 +8,10 @@ django-pj-feedreader
 .. image:: https://travis-ci.org/jokimies/django-pj-feedreader.png?branch=master
     :target: https://travis-ci.org/jokimies/django-pj-feedreader
 
+.. image:: https://codecov.io/github/jokimies/django-pj-feedreader/coverage.svg?branch=master
+    :target: https://codecov.io/github/jokimies/django-pj-feedreader?branch=master
+
+
 Django/AngularJS RSS feed reader
 
 Documentation

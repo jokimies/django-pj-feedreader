@@ -29,9 +29,8 @@ class FeedCategory(models.Model):
 class Feed(models.Model):
     title = models.CharField(max_length=256)
     category = models.ForeignKey(FeedCategory, default=1)
-    dt_checked = models.DateTimeField()
-    dt_updated = models.DateTimeField()
-    url = models.URLField()
+    date_checked = models.DateTimeField()
+    date_updated = models.DateTimeField()
     feed_url = models.URLField()
 
     objects = FeedManager()
