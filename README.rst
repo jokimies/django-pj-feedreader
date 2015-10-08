@@ -16,16 +16,6 @@ Documentation
 The full documentation is at
 https://django-pj-feedreader.readthedocs.org. (at some point)
 
-Quickstart
-----------
-
-Install django-pj-feedreader::
-
-    pip install django-pj-feedreader
-
-Then use it in a project::
-
-    import pjfeedreader
 
 Features
 --------
