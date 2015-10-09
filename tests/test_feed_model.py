@@ -9,7 +9,7 @@ from django.utils import timezone
 
 # Own
 from pjfeedreader.models import Feed
-from .test_feedcategory_model import FeedCategoryFactory
+from .factories import CategoryFactory
 
 
 class FeedFactory(factory.django.DjangoModelFactory):
@@ -21,7 +21,7 @@ class FeedFactory(factory.django.DjangoModelFactory):
         model = Feed
 
     title = factory.Sequence(lambda n: 'Title {0}'.format(n))
-    category = factory.SubFactory(FeedCategoryFactory)
+    category = factory.SubFactory(CategoryFactory)
     date_checked = timezone.now()
     date_updated = timezone.now()
     feed_url = "http://www.snl.com/irweblinkx/rss/prfeed.aspx?iid=4087483"
