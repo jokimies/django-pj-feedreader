@@ -13,7 +13,7 @@ class FeedManager(models.Manager):
 
 
 @python_2_unicode_compatible
-class FeedCategory(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=64)
     slug = models.SlugField(unique=True, max_length=64)
 
@@ -22,13 +22,13 @@ class FeedCategory(models.Model):
 
     class Meta:
         ordering = ('name',)
-        verbose_name_plural = 'feedcategories'
+        verbose_name_plural = 'categories'
 
 
 @python_2_unicode_compatible
 class Feed(models.Model):
     title = models.CharField(max_length=256)
-    category = models.ForeignKey(FeedCategory, default=1)
+    category = models.ForeignKey(Category, default=1)
     date_checked = models.DateTimeField()
     date_updated = models.DateTimeField()
     feed_url = models.URLField()
