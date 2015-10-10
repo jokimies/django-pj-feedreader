@@ -6,12 +6,13 @@ Factories needed in testing
 # 3rd party
 import factory
 
+from django.utils import timezone
+
 # Own
-from pjfeedreader.models import Category
+from pjfeedreader.models import Category, Feed
 
 
 class CategoryFactory(factory.django.DjangoModelFactory):
-
     """
     Factory for creating feed categories
     """
@@ -25,3 +26,18 @@ class CategoryFactory(factory.django.DjangoModelFactory):
 
     # Same for slug
     slug = factory.Sequence(lambda n: 'Slug {0}'.format(n))
+
+
+class FeedFactory(factory.django.DjangoModelFactory):
+    """
+    Factory for creating feeds
+    """
+
+    class Meta:
+        model = Feed
+
+    title = factory.Sequence(lambda n: 'Title {0}'.format(n))
+    category = factory.SubFactory(CategoryFactory)
+    date_checked = timezone.now()
+    date_updated = timezone.now()
+    feed_url = factory.Sequence(lambda n: 'http://www.snl.com/{0}'.format(n))

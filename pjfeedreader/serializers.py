@@ -10,14 +10,16 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ('name', 'slug')
+        fields = ('id', 'name', 'slug')
 
 
 class FeedSerializer(serializers.ModelSerializer):
     """
     Serializing all the Feeds
     """
+    category = CategorySerializer(read_only=True, required=False)
 
     class Meta:
         model = Feed
-        fields = ('title', 'feed_url', 'id')
+        fields = ('id', 'title', 'feed_url', 'category', 'date_checked',
+                  'date_updated')

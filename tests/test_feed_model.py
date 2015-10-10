@@ -2,34 +2,14 @@
 # -*- coding: utf-8 -*-
 
 # 3rd party
-import factory
 
 from django.test import TestCase
-from django.utils import timezone
 
 # Own
 from pjfeedreader.models import Feed
-from .factories import CategoryFactory
+from .factories import FeedFactory
 
 
-class FeedFactory(factory.django.DjangoModelFactory):
-    """
-    Factory for creating feeds
-    """
-
-    class Meta:
-        model = Feed
-
-    title = factory.Sequence(lambda n: 'Title {0}'.format(n))
-    category = factory.SubFactory(CategoryFactory)
-    date_checked = timezone.now()
-    date_updated = timezone.now()
-    feed_url = "http://www.snl.com/irweblinkx/rss/prfeed.aspx?iid=4087483"
-
-
-#
-# Tests
-#
 class FeedModelTest(TestCase):
 
     longMessage = True

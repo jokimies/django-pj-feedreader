@@ -16,9 +16,7 @@ from django.test import TestCase
 from pjfeedreader.models import Category
 from .factories import CategoryFactory
 
-#
-# Tests
-#
+
 class CategoryModelTest(TestCase):
 
     longMessage = True
