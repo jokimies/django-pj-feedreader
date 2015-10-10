@@ -7,23 +7,6 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 
 
-class CategoryManager(models.Manager):
-
-    def create_category(self, name, slug):
-        if not name:
-            raise ValueError('Category must have name')
-
-        if not slug:
-            raise ValueError('Category must have slug defined')
-
-        category = self.model(
-            name=name,
-            slug=slug,
-        )
-        category.save()
-        return category
-
-
 class FeedManager(models.Manager):
     def unread(self):
         return self.get_query_set().filter(posts__read=False).distinct()
@@ -33,8 +16,6 @@ class FeedManager(models.Manager):
 class Category(models.Model):
     name = models.CharField(max_length=64)
     slug = models.SlugField(unique=True, max_length=64)
-
-    objects = CategoryManager()
 
     def __str__(self):
         return self.name
