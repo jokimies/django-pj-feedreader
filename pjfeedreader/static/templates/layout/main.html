@@ -1,0 +1,24 @@
+<div ng-controller="FeedCtrl as ctrl">
+
+    <h3>Add Another Feed</h3>
+
+    <form name="newFeed"> 
+	URL: <input size="80" ng-model="ctrl.newFeed.url" type="url"
+	required>
+	<button ng-click="ctrl.addFeed(ctrl.newFeed)">Add Feed</button>
+    </form>
+    
+    <hr/>
+    <div ng-show="ctrl.feeds && ctrl.feeds.length" ng-repeat="feed in ctrl.feeds">
+	{{ feed.title }}
+	<ul>  
+	    <li ng-repeat="item in feed.items">
+	    <a href="{{ item.link }}">{{ item.title }}</a></li>
+	</ul> 
+	URL: <input size="80" ng-model="feed.url">
+	<button ng-click="ctrl.fetchFeed(feed)">Update</button>
+	<button ng-click="ctrl.deleteFeed(feed)">Delete</button>
+	<hr />
+    </div>
+</div>
+

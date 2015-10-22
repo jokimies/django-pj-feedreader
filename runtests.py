@@ -17,10 +17,12 @@ try:
             "django.contrib.auth",
             "django.contrib.contenttypes",
             "django.contrib.sites",
+            "django.contrib.staticfiles",
             "pjfeedreader",
         ],
         SITE_ID=1,
         MIDDLEWARE_CLASSES=(),
+        STATIC_URL='/static/',
     )
 
     try:

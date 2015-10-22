@@ -1,0 +1,29 @@
+{
+  "name": "django-pj-feedreader",
+  "version": "0.1.0",
+  "description": "Feedreader for Django with AngularJS",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.my.com/git/django-pj-feedreader"
+  },
+  "author": "Petri Jokimies",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-gzip": "^1.2.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.0.4",
+    "gulp-watch": "^4.3.5"
+  }
+}
