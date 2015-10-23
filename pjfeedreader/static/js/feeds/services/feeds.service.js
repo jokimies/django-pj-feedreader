@@ -32,7 +32,7 @@
 
 	function add(url, title) {
 	    return $http.post('/feedreader/api/v1/feeds/', {
-		'feed_url': url,
+		'url': url,
 		'title': title
 	    });
 	}

@@ -31,7 +31,7 @@ class Feed(models.Model):
     category = models.ForeignKey(Category, default=1)
     date_checked = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
-    feed_url = models.URLField()
+    url = models.URLField()
 
     objects = FeedManager()
 

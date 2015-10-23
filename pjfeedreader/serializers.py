@@ -21,5 +21,5 @@ class FeedSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Feed
-        fields = ('id', 'title', 'feed_url', 'category', 'date_checked',
+        fields = ('id', 'title', 'url', 'category', 'date_checked',
                   'date_updated')

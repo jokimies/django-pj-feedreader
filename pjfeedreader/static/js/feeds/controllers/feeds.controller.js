@@ -24,7 +24,7 @@
 
 	    console.log('Feeds:')
 	    console.log(feed)
-	    var url = '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=10&callback=JSON_CALLBACK&q=' + encodeURIComponent(feed.feed_url);
+	    var url = '//ajax.googleapis.com/ajax/services/feed/load?v=1.1&num=10&callback=JSON_CALLBACK&q=' + encodeURIComponent(feed.url);
 
 	    $http.jsonp(url).
 		success(function(data, status, headers, config) {
@@ -44,7 +44,7 @@
 	    console.log(feed)
 	    console.log('Jepjeep')
 	    self.feeds.push(feed);
-	    Feeds.add(feed.feed_url, feed.title)
+	    Feeds.add(feed.url, feed.title)
 		.then(addFeedSuccessFn, 
 		      addFeedErrorFn);
 	    self.newFeed = {};
@@ -100,6 +100,5 @@
 	    self.feeds.splice(self.feeds.indexOf(feed), 1);
 	};
 
-	self.fetchFeed(self.feeds[0]);
     };
 })();

@@ -40,4 +40,4 @@ class FeedFactory(factory.django.DjangoModelFactory):
     category = factory.SubFactory(CategoryFactory)
     date_checked = timezone.now()
     date_updated = timezone.now()
-    feed_url = factory.Sequence(lambda n: 'http://www.snl.com/{0}'.format(n))
+    url = factory.Sequence(lambda n: 'http://www.snl.com/{0}'.format(n))

@@ -85,7 +85,7 @@ class FeedAPITest(APITestCase):
             'title': 'Title 1', 'category': 1,
             'date_checked': date_checked,
             'date_updated': date_updated,
-            'feed_url': 'http://blaa.com',
+            'url': 'http://blaa.com',
         }
         response = self.client.post(reverse('feed-list'),
                                     data, format='json')
