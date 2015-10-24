@@ -1,4 +1,4 @@
-<div ng-controller="FeedCtrl as ctrl">
+<div ng-controller="IndexController as ctrl">
 
     <h3>Add Another Feed</h3>
 
@@ -21,4 +21,7 @@
 	<hr />
     </div>
 </div>
-
+    <a class="btn btn-primary btn-fab btn-raised mdi-content-add"
+       href="javascript:void(0)"
+       ng-dialog="/static/templates/feeds/new-feed.html"
+       ng-dialog-controller="NewFeedController as vm">New Feed</a>

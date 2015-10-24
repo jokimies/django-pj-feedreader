@@ -14,6 +14,7 @@
 	.module('pjfeedreader', [
 	    'pjfeedreader.routes',
 	    'pjfeedreader.feeds',
+	    'pjfeedreader.layout',
 	    'ngAnimate',
 	    'ngCookies',
 	    'ngResource',

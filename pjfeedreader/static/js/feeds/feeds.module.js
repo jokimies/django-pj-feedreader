@@ -5,6 +5,7 @@
 	.module('pjfeedreader.feeds', [
 	    'pjfeedreader.feeds.services',
 	    'pjfeedreader.feeds.controllers',
+	    'ngDialog',
 	]);
 
     angular

@@ -8,6 +8,9 @@
     <base href="/feedreader/">
 {% endblock base_href %}
 
+{% block extra_head %}
+    {% include 'feeds_stylesheets.html' %}
+{% endblock extra_head %}
 
 {% block title%} Feeds {% endblock title %}
 

@@ -14,7 +14,7 @@
     $routeProvider
       .when('/', {
         templateUrl: '/static/templates/layout/main.html',
-        controller: 'FeedCtrl',
+        controller: 'IndexController',
         controllerAs: 'main'
       })
       .when('/about', {
