@@ -15,7 +15,7 @@
       .when('/', {
         templateUrl: '/static/templates/layout/main.html',
         controller: 'IndexController',
-        controllerAs: 'main'
+        controllerAs: 'ctrl'
       })
       .when('/about', {
         templateUrl: 'views/about.html',

@@ -41,8 +41,9 @@ gulp.task('watch', function() {
 
     /* Trigger a live reload on any Django template changes */
     gulp.watch('**/templates/*').on('change', livereload.changed);
-
-    gulp.watch('pjfeedreader/static/js/**/*.js', ['js']).on('change', livereload.changed);
+    /* angular template loads */
+    gulp.watch('pjfeedreader/static/templates/**/*.html').on('change', livereload.changed);
+    gulp.watch('pjfeedreader/static/js/**/*.js').on('change', livereload.changed);
 
 });
 

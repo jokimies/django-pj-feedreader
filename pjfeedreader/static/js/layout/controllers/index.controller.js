@@ -8,16 +8,24 @@
 
     angular
 	.module('pjfeedreader.layout.controllers')
-	.controller('IndexController', ['$http', '$timeout', 'Feeds',
+	.controller('IndexController', ['$scope', '$http', '$timeout', 'Feeds', 
 					IndexController]); 
 
-    function IndexController($http, $timeout, Feeds) {
+    function IndexController($scope, $http, $timeout, Feeds) {
 
 	var self = this
 	self.refreshInterval = 60;
 	self.feeds = [];
-
+	console.log('JOOOOOO');
 	Feeds.all().then(allFeedSuccessFn, allFeedErrorFn)
+
+	/* Be aware of added feeds */
+	$scope.$on('feed.added', function(event, feed) {
+	    console.log('Feed created')
+	    console.log(feed)
+	    console.log(event)
+	    self.addFeed(feed.feed);
+	});
 
 	self.fetchFeed = function(feed) {
 	    feed.items = [];
@@ -44,9 +52,9 @@
 	    console.log(feed)
 	    console.log('Jepjeep')
 	    self.feeds.push(feed);
-	    Feeds.add(feed.url, feed.title)
+	    /* Feeds.add(feed.url, feed.title)
 		.then(addFeedSuccessFn, 
-		      addFeedErrorFn);
+		      addFeedErrorFn); */
 	    self.newFeed = {};
 	};
 
