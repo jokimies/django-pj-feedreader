@@ -1,24 +1,29 @@
-<form role="form" ng-submit="vm.submit()">
-  <div class="form-group">
+<form name="addNewFeed" role="form" ng-submit="vm.submit()">
+  <div class="form-group" ng-class="{ 'has-error': addNewFeed.category.$invalid }">
       <label for="category__detail">Select category</label>
       <select ng-model="vm.selectedCategory" 
 	      ng-options="category.name for category in vm.categories"
 	      id="category__detail"
-	      class="form-control">
+	      class="form-control"
+	      name="category"
+	      required />
       </select>
   </div>
-  <div class="form-group">
+  <div class="form-group" ng-class="{ 'has-error': addNewFeed.url.$invalid }">
     <label for="feed__detail">New Feed</label>
     <input class="form-control" 
               id="feed__detail" 
               placeholder="Feed url" 
-              ng-model="vm.newFeed.url">
+              ng-model="vm.newFeed.url"
+	      name="url"
+	      required />
     </input>
   </div>
 
   <div class="form-group">
-    <button type="submit" class="btn btn-primary">
-      Submit !
+    <button type="submit" class="btn btn-primary"
+              ng-disabled="addNewFeed.$invalid">
+      Submit
     </button>
   </div>
 </form>
