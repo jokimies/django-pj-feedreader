@@ -52,14 +52,39 @@
 	 * @memberOf pjfeedreader.feeds.controllers.NewFeedController
 	 */
 	function submit() {
-	    console.log("Add submit pressed");
-	    console.log(self.newFeed)
-	    console.log(self.selectedCategory);
+	    console.log('Add submit pressed');
+
+	    /* Tell listeners (e.g. IndexController) that a new feed was
+	    added */
 	    $rootScope.$broadcast('feed.added', {
 		feed: self.newFeed,
 		category: self.selectedCategory
 	    });
 	    $scope.closeThisDialog();
+	    Feeds.add(self.newFeed.url, 'Default title', 
+		      self.selectedCategory)
+		.then(addFeedSuccessFn, 
+		      addFeedErrorFn); 
+
+	    /**
+	     * @name addFeedSuccessFn
+	     * @desc Show success message
+	     */
+
+	    function addFeedSuccessFn(data, status, headers, config) {
+		console.log('Adding feed succesfully');
+	    }
+
+	    /**
+	     * @name addFeedErrorFn
+	     * @desc Show success message
+	     */
+
+	    function addFeedErrorFn(data, status, headers, config) {
+		console.log('Error in adding')
+		console.log(data)
+		console.log(data.error);
+	    }
 	}
     }
 })();

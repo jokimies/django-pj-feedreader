@@ -30,10 +30,11 @@
 	 * @memberOf pjfeedreader.feeds.services.Feeds
 	 */
 
-	function add(url, title) {
+	function add(url, title, category) {
 	    return $http.post('/feedreader/api/v1/feeds/', {
 		'url': url,
-		'title': title
+		'title': title,
+		'category': category
 	    });
 	}
 	
