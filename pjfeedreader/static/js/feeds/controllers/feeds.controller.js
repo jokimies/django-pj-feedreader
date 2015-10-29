@@ -13,7 +13,7 @@
 
     function FeedCtrl($http, $timeout, Feeds) {
 
-	var self = this
+        var self = this
 	self.refreshInterval = 60;
 	self.feeds = [];
 

@@ -18,24 +18,9 @@
 
 	self.categories = []
 
-	Categories.all().then(allCategorySuccessFn, allCategoryErrorFn)
+	Categories.all().then(function(data, status, headers, config) {
+	    console.log(data)
+	});
 
-        /**
-         * @name allCategorySuccessFn
-         * @desc Show success message
-         */
-
-	function allCategorySuccessFn(data, status, headers, config) {
-	    console.log(data);
-	}
-	
-        /**
-         * @name allCategoryErrorFn
-         * @desc Show success message
-         */
-
-	function allCategoryErrorFn(data, status, headers, config) {
-	    console.log('All Category error');
-	}
     }
 })();
