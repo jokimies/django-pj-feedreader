@@ -7,18 +7,31 @@
 	required>
 	<button ng-click="ctrl.addFeed(ctrl.newFeed)">Add Feed</button>
     </form>
-    
+
     <hr/>
-    <div ng-show="ctrl.feeds && ctrl.feeds.length" ng-repeat="feed in ctrl.feeds">
-	{{ feed.title }}
-	<ul>  
-	    <li ng-repeat="item in feed.items">
-	    <a href="{{ item.link }}">{{ item.title }}</a></li>
-	</ul> 
-	URL: <input size="80" ng-model="feed.url">
-	<button ng-click="ctrl.fetchFeed(feed)">Update</button>
-	<button ng-click="ctrl.deleteFeed(feed)">Delete</button>
-	<hr />
+
+    <div class="container">
+	<div class="row" ng-repeat="rows in ctrl.slicedFeeds">
+	    <div class="col-md-4" ng-repeat="feed in rows">
+		<div class="panel panel-default">
+		    <div class="panel-heading">
+			<div class="panel-title">
+			    {{ feed.title }}
+			</div>
+		    </div>
+		    <div class="panel-body">
+			<ul>  
+			    <li ng-repeat="item in feed.items">
+			    <a href="{{ item.link }}">{{ item.title }}</a></li>
+			</ul> 
+			URL: <input ng-model="feed.url">
+		    </div>
+		</div> <!-- panel -->
+		<button class="bnt btn-primary" ng-click="ctrl.fetchFeed(feed)">Update</button>
+		<button ng-click="ctrl.deleteFeed(feed)">Delete</button>
+		<hr/>
+	    </div>
+	</div>
     </div>
 </div>
     <a class="btn btn-primary btn-fab btn-raised mdi-content-add"

@@ -17,6 +17,7 @@
         self.refreshInterval = 300;
         self.feeds = [];
         self.categories = [];
+        self.slicedFeeds = [];
 
         /* Get all feeds from server */
         Feeds.all().then(allFeedSuccessFn, allFeedErrorFn);
@@ -50,9 +51,20 @@
         function addFeed(feed) {
             fetchFeed(feed);
             self.feeds.push(feed);
+            self.slicedFeeds = sliceFeeds(self.feeds, 3);
+            console.log(self.slicedFeeds);
+
         }
 
-	
+        function sliceFeeds(arr, size) {
+            var newArr = [];
+            for (var i=0; i<arr.length; i+=size) {
+                newArr.push(arr.slice(i, i+size));
+            }
+            return newArr;
+        }
+
+        
         /**
          * @name addFeedSuccessFn
          * @desc Set feeds to retrieved data on succesfull retrieval
@@ -64,6 +76,9 @@
             
             console.log('All feed Success');
             self.feeds = data.data;
+            self.slicedFeeds = sliceFeeds(self.feeds, 3);
+            console.log(self.slicedFeeds);
+
             for (index = 0; index < self.feeds.length; ++index) {
                 fetchFeed(self.feeds[index]);
             }
