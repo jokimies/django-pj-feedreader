@@ -19,11 +19,12 @@
         self.categories = [];
         self.slicedFeeds = [];
 
+        self.fetchFeed = fetchFeed;
+
         /* Get all feeds from server */
         Feeds.all().then(allFeedSuccessFn, allFeedErrorFn);
         
         Categories.all().then(function(data) {
-            console.log('index ctrl cat');
             self.categories = data.data;
         });
 
@@ -34,7 +35,6 @@
 
         function fetchFeed(feed) {
             feed.items = [];
-
             var url = '//ajax.googleapis.com/ajax/services/feed/load?v=1.1&num=10&callback=JSON_CALLBACK&q=' + encodeURIComponent(feed.url);
 
             $http.jsonp(url).
@@ -52,16 +52,14 @@
             fetchFeed(feed);
             self.feeds.push(feed);
             self.slicedFeeds = sliceFeeds(self.feeds, 3);
-            console.log(self.slicedFeeds);
-
         }
 
         function sliceFeeds(arr, size) {
-            var newArr = [];
+            var slicedArr = [];
             for (var i=0; i<arr.length; i+=size) {
-                newArr.push(arr.slice(i, i+size));
+                slicedArr.push(arr.slice(i, i+size));
             }
-            return newArr;
+            return slicedArr;
         }
 
         
@@ -96,6 +94,8 @@
 
         self.deleteFeed = function(feed) {
             self.feeds.splice(self.feeds.indexOf(feed), 1);
+            self.slicedFeeds = sliceFeeds(self.feeds, 3);
+            Feeds.remove(feed);
         };
     }
 })();

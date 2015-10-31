@@ -18,7 +18,8 @@
     function Feeds($http) {
         var Feeds = {
             add: add,
-            all: all
+            all: all,
+            remove: remove
         };
         return Feeds;
 	
@@ -43,7 +44,7 @@
          * @desc Show success message
          */
 
-        function addFeedSuccessFn(data, status, headers, config) {
+        function addFeedSuccessFn(data) {
             console.log('Adding feed succesfully');
         }
 
@@ -52,10 +53,9 @@
          * @desc Show success message
          */
 
-        function addFeedErrorFn(data, status, headers, config) {
+        function addFeedErrorFn(data) {
             console.log('Error in adding');
             console.log(data);
-            console.log(data.error);
         }
 
 	/**
@@ -68,6 +68,40 @@
         function all() {
             return $http.get('/feedreader/api/v1/feeds/');
         }
+	/**
+	 * @name remove
+	 * @desc delete existing feed (called remove as delete is reserved)
+	 * @param
+	 * @returns {Promise}
+	 * @memberOf pjfeedreader.feeds.services.Feeds
+	 */
+
+        function remove(feed) {
+            return $http.delete('/feedreader/api/v1/feeds/' + feed.id + '/')
+                .then(removeFeedSuccessFn, removeFeedErrorFn);
+        }
+
+        /**
+         * @name removeFeedSuccessFn
+         * @desc Show success message
+         */
+
+        function removeFeedSuccessFn(data) {
+            /* console.log(data); */
+            
+        }
+
+        /**
+         * @name removeCategoryErrorFn
+         * @desc Show success message
+         */
+
+        function removeFeedErrorFn(data) {
+            /* console.log(data.status);
+            console.log(data.statusText);
+            console.log(data.config.url); */
+        }
+
     }
 })();
 

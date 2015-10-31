@@ -17,7 +17,7 @@
 		    <div class="panel-heading">
 			<div class="pull-right">
 			    <i class="fa fa-trash-o"
-			       ng-click="deleteFeed();"></i> 
+			       ng-click="ctrl.deleteFeed(feed);"></i> 
 			</div>
 			<div class="panel-title">
 			    {{ feed.title }}
@@ -32,7 +32,6 @@
 		    </div>
 		</div> <!-- panel -->
 		<button class="bnt btn-primary" ng-click="ctrl.fetchFeed(feed)">Update</button>
-		<button ng-click="ctrl.deleteFeed(feed)">Delete</button>
 		<hr/>
 	    </div>
 	</div>
