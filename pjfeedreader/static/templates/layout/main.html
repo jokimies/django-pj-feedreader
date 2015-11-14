@@ -1,21 +1,12 @@
 <div>
-
-    <h3>Add Another Feed</h3>
-
-    <form name="newFeed"> 
-	URL: <input size="80" ng-model="ctrl.newFeed.url" type="url"
-	required>
-	<button ng-click="ctrl.addFeed(ctrl.newFeed)">Add Feed</button>
-    </form>
-
-    <hr/>
-
     <div class="container">
 	<div class="row" ng-repeat="rows in ctrl.slicedFeeds">
 	    <div class="col-md-4" ng-repeat="feed in rows">
 		<div class="panel panel-default">
 		    <div class="panel-heading">
 			<div class="pull-right">
+			    <i class="fa fa-refresh"
+			    ng-click="ctrl.fetchFeed(feed);"></i>
 			    <i class="fa fa-trash-o"
 			       ng-click="ctrl.deleteFeed(feed);"></i> 
 			</div>
@@ -31,8 +22,6 @@
 			URL: <input ng-model="feed.url">
 		    </div>
 		</div> <!-- panel -->
-		<button class="bnt btn-primary" ng-click="ctrl.fetchFeed(feed)">Update</button>
-		<hr/>
 	    </div>
 	</div>
     </div>
@@ -41,4 +30,4 @@
 	      btn-add-new-feed"
        href="javascript:void(0)"
        ng-dialog="/static/templates/feeds/new-feed.html"
-       ng-dialog-controller="NewFeedController as vm">New Feed</a>
+       ng-dialog-controller="NewFeedController as vm"></a>
