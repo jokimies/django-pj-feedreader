@@ -7,6 +7,7 @@ var gzip = require('gulp-gzip');
 var livereload = require('gulp-livereload');
 var notify = require('gulp-notify');
 
+var eslint = require('gulp-eslint');
 
 var gzip_options = {
     threshold: '1kb',
@@ -30,9 +31,22 @@ gulp.task('sass', function() {
 
 gulp.task('js', function () {
     gulp.src('pjfeedreader/static/js/**/*.js')
-    .pipe(notify({ message: 'Finished minifying JavaScript'}))
+	.pipe(notify({ message: 'Finished minifying JavaScript'}));
     //.pipe(livereload())
-})
+});
+
+gulp.task('lint', function () {
+    return gulp.src(['pjfeedreader/static/js/**/*.js'])
+        // eslint() attaches the lint output to the eslint property
+        // of the file object so it can be used by other modules.
+        .pipe(eslint())
+        // eslint.format() outputs the lint results to the console.
+        // Alternatively use eslint.formatEach() (see Docs).
+        .pipe(eslint.format())
+        // To have the process exit with an error code (1) on
+        // lint error, return the stream and pipe to failOnError last.
+        .pipe(eslint.failOnError());
+});
 
 /* Watch Files For Changes */
 gulp.task('watch', function() {
@@ -43,8 +57,8 @@ gulp.task('watch', function() {
     gulp.watch('**/templates/*').on('change', livereload.changed);
     /* angular template loads */
     gulp.watch('pjfeedreader/static/templates/**/*.html').on('change', livereload.changed);
-    gulp.watch('pjfeedreader/static/js/**/*.js').on('change', livereload.changed);
+    gulp.watch('pjfeedreader/static/js/**/*.js', ['lint']).on('change', livereload.changed);
 
 });
 
-gulp.task('default', ['sass', 'watch']);
+gulp.task('default', ['sass', 'watch', 'lint']);
