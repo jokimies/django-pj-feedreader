@@ -10,3 +10,6 @@
   right: 20px;
 }
 
+a:hover, a:focus {
+    color: #2A6496;
+}
