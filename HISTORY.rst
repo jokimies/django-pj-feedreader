@@ -1,5 +1,26 @@
 .. :changelog:
 
+v0.1.0-4-g63dcea4:dev:2015-12-05-19:53 (unreleased)
+------------------------
+
+Fix
+~~~
+
+- *requirements*: Specific about Django version. [Petri Jokimies]
+
+
+
+
+
+
+
+- Replace Google API. Fixes #2. [Petri Jokimies]
+
+Documentation
+~~~~~~~~~~~~~
+
+- Generated new HISTORY. [Petri Jokimies]
+
 v0.1.0 (2015-11-22)
 -------------------
 
