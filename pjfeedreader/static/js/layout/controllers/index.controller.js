@@ -40,8 +40,10 @@
             var query = "select * from xml where url = '" + feed.url + "'"
             var url = 'http://query.yahooapis.com/v1/public/yql?q=' + 
                 fixedEncodeURIComponent(query) + format;
-            var feedItem
+            var feedItem = {};
+            var feedItems;
             var what = Object.prototype.toString
+            var i, length;
 
             $http.jsonp(url).
                 success(function(data, status, headers, config) {
@@ -49,18 +51,36 @@
                        there's more than one item in the feed, otherwise it
                        return an object
                     */
-                    feedItem = data.query.results.rss.channel.item
+                    if ( data.query.results.rss !== undefined ) {
+                        feedItem = data.query.results.rss.channel.item;
+                        feed.title=data.query.results.rss.channel.title;
 
-                    /* feed.items is supposed to be an array. If array is
-                       returned use it as such, if not push the single item
-                       to feed.items -array 
-                    */
-                    if ( what.call(feedItem) === '[object Array]') {
-                        feed.items=data.query.results.rss.channel.item;
-                    } else {
-                        feed.items.push(data.query.results.rss.channel.item)
+                        /* feed.items is supposed to be an array. If array is
+                           returned use it as such, if not push the single item
+                           to feed.items -array 
+                        */
+                        if ( what.call(feedItem) === '[object Array]') {
+                            feed.items=data.query.results.rss.channel.item;
+                        } else {
+                            feed.items.push(data.query.results.rss.channel.item)
+                        }
+                    } 
+                    else if ( data.query.results.feed !== undefined ) {
+                        /* 
+                           Some feeds return different data, try to cope
+                           with that  as well
+                        */
+                        feedItems = data.query.results.feed.entry;
+                        length = feedItems.length;
+
+                        for (i=0; i < length; ++i) {
+                            /* Assuming the array has no holes.. */
+                            feed.items.push({'link': feedItems[i].origLink,
+                                             'title': feedItems[i].title.content
+                            });
+                       } 
+                        feed.title=data.query.results.feed.title.content;
                     }
-                    feed.title=data.query.results.rss.channel.title;
                 }).
                 error(function(data, status, headers, config) {
                     console.error('Error fetching feed:', data);
@@ -102,10 +122,8 @@
             // Snackbar notification here ?
             var index;
             
-            console.log('All feed Success');
             self.feeds = data.data;
             self.slicedFeeds = sliceFeeds(self.feeds, 3);
-            console.log(self.slicedFeeds);
 
             for (index = 0; index < self.feeds.length; ++index) {
                 fetchFeed(self.feeds[index]);
